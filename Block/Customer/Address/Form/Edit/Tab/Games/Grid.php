@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Epam\Customer\Block\Customer\Address\Form\Edit\Tab\Games;
 
@@ -6,27 +7,25 @@ use Magento\Backend\Block\Widget\Grid\Extended;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Helper\Data;
 use Epam\ComputerGames\Model\ResourceModel\Game\CollectionFactory;
-use Magento\Framework\Registry;
+
 class Grid extends Extended
 {
-    private CollectionFactory $_collectionFactory;
+    private CollectionFactory $collectionFactory;
 
     /**
      * @param Context $context
      * @param Data $backendHelper
      * @param CollectionFactory $collectionFactory
-     * @param Registry $coreRegistry
      * @param array $data
      */
     public function __construct(
-        Context $context,
-        Data $backendHelper,
+        Context           $context,
+        Data              $backendHelper,
         CollectionFactory $collectionFactory,
-        Registry $coreRegistry,
-        array $data = []
-    ) {
-        $this->_coreRegistry = $coreRegistry;
-        $this->_collectionFactory = $collectionFactory;
+        array             $data = []
+    )
+    {
+        $this->collectionFactory = $collectionFactory;
         parent::__construct($context, $backendHelper, $data);
     }
 
@@ -38,6 +37,7 @@ class Grid extends Extended
         $this->setPagerVisibility(false);
         $this->setFilterVisibility(false);
     }
+
     protected function _prepareGrid()
     {
         $this->setId('computer_games_customer_custom' . $this->getWebsiteId());
@@ -46,7 +46,7 @@ class Grid extends Extended
 
     protected function _prepareCollection()
     {
-        $collection = $this->_collectionFactory->create();
+        $collection = $this->collectionFactory->create();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
