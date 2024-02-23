@@ -9,6 +9,7 @@
     <module name="Epam_Customer" setup_version="1.0.1">
         <sequence>
             <module name="Magento_Customer"/>
+            <module name="Epam_ComputerGames"/>
         </sequence>
     </module>
 </config>
